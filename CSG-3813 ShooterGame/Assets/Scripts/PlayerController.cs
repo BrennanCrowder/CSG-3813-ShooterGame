@@ -56,6 +56,5 @@ public class PlayerController : MonoBehaviour
             transform.localRotation = Quaternion.LookRotation(lookDirection.normalized, Vector3.up);
         }
 
-    
     }
 }
