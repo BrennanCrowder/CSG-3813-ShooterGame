@@ -23,6 +23,6 @@ public class ProxyDamage : MonoBehaviour
 
         if (hlth == null) { return; }
 
-        hlth.healthPoints -= damageRate * Time.deltaTime;
+        hlth.healthPoints -= damageRate;
     }
 }

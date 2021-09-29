@@ -35,7 +35,9 @@ public class Health : MonoBehaviour
                 }
                 if (destroyOnDeath)
                 {
+                    
                     Destroy(gameObject);
+     
                 }
             }
         }

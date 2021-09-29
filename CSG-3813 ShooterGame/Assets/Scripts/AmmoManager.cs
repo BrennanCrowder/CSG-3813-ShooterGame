@@ -14,13 +14,13 @@ public class AmmoManager : MonoBehaviour
             ammoManagerSingleton = this;
         } else
         {
-            ammoManagerSingleton = null;
+            Destroy(GetComponent<AmmoManager>());
         }
     }
     #endregion
 
     public GameObject ammoPrefab;
-    public int poolSize = 100;
+    public int poolSize = 1;
     public Queue<Transform> ammoQueue = new Queue<Transform>();
 
     private GameObject[] ammoArray;
@@ -45,7 +45,6 @@ public class AmmoManager : MonoBehaviour
     }
     public static Transform spawnAmmo(Vector3 position, Quaternion rotation)
     {
-
         Transform spawnedAmmo = ammoManagerSingleton.ammoQueue.Dequeue();
         spawnedAmmo.gameObject.SetActive(true);
         spawnedAmmo.position = position;

@@ -10,7 +10,7 @@ public class FireWeapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //Instantiate(bulletPrefab, transform.position, transform.rotation);
+            
             AmmoManager.spawnAmmo(transform.position, transform.rotation);
         }
 

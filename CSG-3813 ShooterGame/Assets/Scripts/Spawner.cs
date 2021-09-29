@@ -6,16 +6,14 @@ public class Spawner : MonoBehaviour
 {
     public GameObject objToSpawn;
 
-
     public float radius = 10f;
-    public float interval = 5f;
-    public Transform orgin;
+    public float interval = 3f;
+    //public Transform orgin;
+    public GameObject[] spawnLocations;
+    public GameObject greenObj;
+    public GameObject redObj;
+    public GameObject[] wall;
 
-    private void Awake()
-    {
-        orgin = GameObject.FindGameObjectWithTag("Player").transform;
-
-    }
     private void Start()
     {
         InvokeRepeating("Spawn", 0f, interval);
@@ -24,10 +22,21 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        if(orgin == null) { return; }
+        Debug.Log("Spawn");
+        for(int i = 0; i < spawnLocations.Length; i++)
+        {
+            int number = Random.Range(1, 3);
+            if(number == 1)
+            {
+                wall[i] = greenObj;
+            } else if (number == 2) {
+                wall[i] = redObj;
+            }
+        }
+        for (int i = 0; i < spawnLocations.Length; i++)
+        {
+            Instantiate(wall[i], spawnLocations[i].transform.position, spawnLocations[i].transform.rotation);
 
-        Vector3 SpawnPos = orgin.position + Random.onUnitSphere * radius;
-        SpawnPos = new Vector3(SpawnPos.x, 0f, SpawnPos.z);
-        Instantiate(objToSpawn, SpawnPos, Quaternion.identity);
+        }
     }
 }
