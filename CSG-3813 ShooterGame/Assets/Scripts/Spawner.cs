@@ -7,23 +7,37 @@ public class Spawner : MonoBehaviour
     public GameObject objToSpawn;
 
     public float radius = 10f;
-    public float interval = 3f;
+    public static float interval = 5f;
     //public Transform orgin;
-    public GameObject[] spawnLocations;
+    public GameObject spawnLocation;
     public GameObject greenObj;
     public GameObject redObj;
     public GameObject[] wall;
+    public GameObject emptyWall;
 
+    private int count = 0;
     private void Start()
     {
-        InvokeRepeating("Spawn", 0f, interval);
+        //InvokeRepeating("Spawn", 0f, interval);
     }
 
+    private void Update()
+    {
+        if (count < 100)
+        {
+            Invoke("Spawn", interval);
+        }
+        interval++;
+        count++;
+    }
 
     void Spawn()
     {
         Debug.Log("Spawn");
-        for(int i = 0; i < spawnLocations.Length; i++)
+
+        GameObject newWall = Instantiate(emptyWall, spawnLocation.transform.position, spawnLocation.transform.rotation);
+
+        for (int i = 0; i < 11; i++)
         {
             int number = Random.Range(1, 3);
             if(number == 1)
@@ -32,11 +46,9 @@ public class Spawner : MonoBehaviour
             } else if (number == 2) {
                 wall[i] = redObj;
             }
+            GameObject wallPiece = Instantiate(wall[i], spawnLocation.transform.position + new Vector3(0,0,i), spawnLocation.transform.rotation);
+            wallPiece.transform.parent = newWall.transform;
         }
-        for (int i = 0; i < spawnLocations.Length; i++)
-        {
-            Instantiate(wall[i], spawnLocations[i].transform.position, spawnLocations[i].transform.rotation);
 
-        }
     }
 }

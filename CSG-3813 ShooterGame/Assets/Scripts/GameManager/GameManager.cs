@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public string ScorePrefix = "Score: ";
     public TMP_Text scoreText;
     public TMP_Text gameOverText;
+    public TMP_Text levelCompleteText;
     public static int Score = 0;
 
 
@@ -45,7 +46,16 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = ScorePrefix + Score.ToString();
         }
+        if (Score >= 10000)
+        {
+            LevelWin();
+        }
     }
+    public static void LevelWin()
+    {
+        gm.levelCompleteText.gameObject.SetActive(true);
+    }
+
     public static void GameOver()
     {
         if(gm.gameOverText != null)

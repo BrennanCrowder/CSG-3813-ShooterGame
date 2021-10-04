@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 4467276879357497778}
   - component: {fileID: 5408426176754459231}
   - component: {fileID: 5147479874424180785}
-  - component: {fileID: 1453263186163726502}
   - component: {fileID: -1023994468342839393}
   m_Layer: 0
   m_Name: green
@@ -145,19 +144,6 @@ MonoBehaviour:
   destroyOnDeath: 1
   deathParticlesPrefab: {fileID: 0}
   _healthPoints: 100
---- !u!114 &1453263186163726502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690543037701898841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72062ded22e13204a96ec276bd5225c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 2
 --- !u!114 &-1023994468342839393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +156,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430ddcb8333a3224d9582827244329aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 1

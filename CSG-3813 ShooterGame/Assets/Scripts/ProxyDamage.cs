@@ -19,6 +19,10 @@ public class ProxyDamage : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
         Health hlth = other.GetComponent<Health>();
 
         if (hlth == null) { return; }
