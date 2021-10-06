@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject objToSpawn;
+    //public GameObject objToSpawn;
 
-    public float radius = 10f;
+    //public float radius = 10f;
     public static float interval = 5f;
     //public Transform orgin;
     public GameObject spawnLocation;
@@ -15,26 +15,33 @@ public class Spawner : MonoBehaviour
     public GameObject[] wall;
     public GameObject emptyWall;
 
-    private int count = 0;
+    //private int count = 0;
     private void Start()
     {
-        //InvokeRepeating("Spawn", 0f, interval);
+        interval = 5f;
+        Debug.Log("Interval: " + interval);
+        for (int count = 0; count <= GameManager.target / 100; count++)
+        {
+            Invoke("Spawn", interval);
+            count++;
+            interval++;
+        }
     }
 
     private void Update()
     {
-        if (count < 100)
+
+        if (!GameManager.GM.getRunning())
         {
-            Invoke("Spawn", interval);
+            Debug.Log("Stopping Spawn...");
+            CancelInvoke();
         }
-        interval++;
-        count++;
     }
 
     void Spawn()
     {
         Debug.Log("Spawn");
-
+        int greenCount = 0;
         GameObject newWall = Instantiate(emptyWall, spawnLocation.transform.position, spawnLocation.transform.rotation);
 
         for (int i = 0; i < 11; i++)
@@ -43,11 +50,19 @@ public class Spawner : MonoBehaviour
             if(number == 1)
             {
                 wall[i] = greenObj;
+                greenCount++;
             } else if (number == 2) {
                 wall[i] = redObj;
+                
             }
             GameObject wallPiece = Instantiate(wall[i], spawnLocation.transform.position + new Vector3(0,0,i), spawnLocation.transform.rotation);
             wallPiece.transform.parent = newWall.transform;
+        }
+        if (greenCount == 0)
+        {
+            Destroy(newWall);
+            Debug.Log("Unlucky...");
+            Spawn();
         }
 
     }
