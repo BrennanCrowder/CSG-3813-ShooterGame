@@ -28,13 +28,15 @@ public class GameManager : MonoBehaviour
     #endregion
 
     private static int nextLevel = 1;
+    public static int highestScore = 0;
     public string ScorePrefix = "Score: ";
     public TMP_Text scoreText;
     public TMP_Text gameOverText;
     public TMP_Text levelCompleteText;
     public TMP_Text targetText;
+    public TMP_Text highScoreText;
     public static int Score = 0;
-    public static int target;
+    public static int target = 100000;
     private static bool isRunning = true;
 
     // Start is called before the first frame update
@@ -53,11 +55,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            nextLevel = 1;
+            nextLevel = 3;
         }
         if (targetText != null)
         {
            targetText.text = "Target: " + target;
+        }
+        if (highScoreText != null)
+        {
+            highScoreText.text = "HighScore: " + highestScore + "!";
         }
         
     }
@@ -65,11 +71,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         if(isRunning)
         {
             if (scoreText != null)
             {
                 scoreText.text = ScorePrefix + Score.ToString();
+            }
+            if(highestScore < Score)
+            {
+                highestScore = Score;
+               
             }
             if (Score >= target)
             {
@@ -93,6 +106,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void setNextLevel(int ilevel)
+    {
+        nextLevel = ilevel;
+        Debug.Log("NextLevelSet: " + ilevel);
+    }
     public static void GameOver()
     {
         if(gm.gameOverText != null && isRunning)
@@ -112,7 +130,7 @@ public class GameManager : MonoBehaviour
     public static void NextLevel()
     {
         Debug.Log(nextLevel);
-        if (nextLevel == 1 || nextLevel == 2)
+        if (nextLevel == 1 || nextLevel == 2 || nextLevel == 3)
         {
            Debug.Log("Loading Next Level..." + nextLevel.ToString());
            //Reset();
@@ -125,5 +143,11 @@ public class GameManager : MonoBehaviour
     public void setTarget(int itarget)
     {
         target = itarget;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Exiting Game...");
+        Application.Quit();
     }
 }

@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
+        
         GameManager.GameOver();
     }
 }

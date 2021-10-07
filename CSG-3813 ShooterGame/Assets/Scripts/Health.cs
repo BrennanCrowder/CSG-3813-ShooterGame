@@ -31,6 +31,7 @@ public class Health : MonoBehaviour
                 SendMessage("Die", SendMessageOptions.DontRequireReceiver);
                 if (deathParticlesPrefab != null)
                 {
+                    
                     Instantiate(deathParticlesPrefab, transform.position, transform.rotation);
                 }
                 if (destroyOnDeath)

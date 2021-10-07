@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
         for (int count = 0; count <= GameManager.target / 100; count++)
         {
             Invoke("Spawn", interval);
-            count++;
+            
             interval++;
         }
     }

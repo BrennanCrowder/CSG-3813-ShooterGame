@@ -46,6 +46,7 @@ public class AmmoManager : MonoBehaviour
     public static Transform spawnAmmo(Vector3 position, Quaternion rotation)
     {
         Transform spawnedAmmo = ammoManagerSingleton.ammoQueue.Dequeue();
+        AmmoManager.ammoManagerSingleton.GetComponent<AudioSource>().Play();
         spawnedAmmo.gameObject.SetActive(true);
         spawnedAmmo.position = position;
         spawnedAmmo.localRotation = rotation;
