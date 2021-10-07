@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     {
         interval = 5f;
         Debug.Log("Interval: " + interval);
-        for (int count = 0; count <= GameManager.target / 100; count++)
+        for (int count = 0; count < GameManager.target / 100; count++)
         {
             Invoke("Spawn", interval);
             

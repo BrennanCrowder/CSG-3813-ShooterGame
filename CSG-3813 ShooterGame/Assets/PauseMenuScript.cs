@@ -31,9 +31,12 @@ public class PauseMenuScript : MonoBehaviour
 
     void Pause()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        gameIsPaused = true; 
+        if(GameManager.GM.getRunning())
+        {
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            gameIsPaused = true;
+        }
     }
 
     public void LoadMenu()
